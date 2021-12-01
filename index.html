@@ -4,7 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>WebGL2</title>
-    <style>.wrap{display: block;text-align: center;}#message{font-weight: bold;}
+    <style>
+        .wrap {
+            display: block;
+            text-align: center;
+            line-height: normal
+        }
+        #canvas {
+            background-color: black;
+        }
+        #message {
+            font-weight: bold;
+        }
+        .bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 240px;
+        }
     </style>
 </head>
 <body>
@@ -13,7 +36,11 @@
 <div class="wrap">
     <h2 >Project #2 (2021)</h2>
     <canvas id="canvas" height="512" width="1024"></canvas>
+    <div class="bottom">
+        <div id="longitude"></div>
+        <div id="latitude"></div>
+    </div>
     <p id="message"></p>
 </div>
-<script src="index.js"></script>
+<script type="module" src="index.js"></script>
 </body>
