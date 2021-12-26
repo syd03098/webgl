@@ -40,62 +40,89 @@ function main (img) {
   fixFirstPoint()
   render()
   addEventListener('keydown', function (e) {
+    const $messageDOM = document.getElementById('message')
+    if (!$messageDOM) {
+      return
+    }
+
+    let message = ''
+
     switch (e.key) {
       case 'ArrowUp': {
         if (e.getModifierState('Shift')) {
           elevation += 5
+          message = `Shift + ${e.key} is pressed`
         } else {
           mat4.translate(m, m, [0, -0.1, 0])
+          message = `${e.key} is pressed`
         }
         break
       }
       case 'ArrowDown': {
         if (e.getModifierState('Shift')) {
           elevation -= 5
+          message = `Shift + ${e.key} is pressed`
         } else {
           mat4.translate(m, m, [0, 0.1, 0])
+          message = `${e.key} is pressed`
         }
         break
       }
       case 'ArrowLeft': {
         if (e.getModifierState('Shift')) {
           azimuth += 5
+          message = `Shift + ${e.key} is pressed`
         } else {
           mat4.rotateZ(m, m, toRadian(3))
+          message = `${e.key} is pressed`
         }
         break
       }
       case 'ArrowRight': {
         if (e.getModifierState('Shift')) {
           azimuth -= 5
+          message = `Shift + ${e.key} is pressed`
         } else {
           mat4.rotateZ(m, m, toRadian(-3))
+          message = `${e.key} is pressed`
         }
         break
       }
       case 'a':
       case 'A': {
         mat4.translate(m, m, [0, 0, 0.1])
+        message = `${e.key} is pressed`
         break
       }
       case 'z':
       case 'Z': {
         mat4.translate(m, m, [0, 0, -0.1])
+        message = `${e.key} is pressed`
         break
       }
       case '=':
       case '+': {
         fov = Math.max(fov - 5, 5)
+        message = '+ is pressed'
         break
       }
       case '-':
       case '_': {
         fov = Math.min(fov + 5, 120)
+        message = '- is pressed'
         break
       }
       default:
         break
     }
+
+    $messageDOM.innerText = message
+  })
+  addEventListener('keyup', function () {
+    setTimeout(() => {
+      const message = document.getElementById('message')
+      message.innerText = null
+    }, 1000)
   })
 }
 
