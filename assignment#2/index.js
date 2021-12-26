@@ -1,4 +1,4 @@
-import * as util from './lib/gl-matrix/common.js';
+import * as util from './lib/gl-matrix/common.js'
 import * as mat4 from './lib/gl-matrix/mat4.js'
 
 const vs = `#version 300 es
@@ -75,7 +75,7 @@ function getCubeColors () {
     0, 0, 255,
     0, 0, 255,
     0, 0, 255,
-    0, 0, 255,
+    0, 0, 255
   ])
 }
 
@@ -201,8 +201,8 @@ function createShader (gl, type, source) {
   gl.compileShader(shader)
 
   return gl.getShaderParameter(shader, gl.COMPILE_STATUS)
-      ? shader
-      : undefined
+    ? shader
+    : undefined
 }
 
 function createProgram (gl, vertexShader, fragmentShader) {
@@ -212,8 +212,8 @@ function createProgram (gl, vertexShader, fragmentShader) {
   gl.linkProgram(program)
 
   return gl.getProgramParameter(program, gl.LINK_STATUS)
-      ? program
-      : undefined
+    ? program
+    : undefined
 }
 
 function createVertexArrayObject (gl, aPositionLocation, colorLocation, positions, colors) {
@@ -223,9 +223,9 @@ function createVertexArrayObject (gl, aPositionLocation, colorLocation, position
   const positionBuffer = gl.createBuffer()
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
   gl.bufferData(
-      gl.ARRAY_BUFFER,
-      positions,
-      gl.STATIC_DRAW
+    gl.ARRAY_BUFFER,
+    positions,
+    gl.STATIC_DRAW
   )
   gl.enableVertexAttribArray(aPositionLocation)
   gl.vertexAttribPointer(aPositionLocation, 3, gl.FLOAT, false, 0, 0)
@@ -233,9 +233,9 @@ function createVertexArrayObject (gl, aPositionLocation, colorLocation, position
   const colorBuffer = gl.createBuffer()
   gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer)
   gl.bufferData(
-      gl.ARRAY_BUFFER,
-      colors,
-      gl.STATIC_DRAW
+    gl.ARRAY_BUFFER,
+    colors,
+    gl.STATIC_DRAW
   )
   gl.enableVertexAttribArray(colorLocation)
   gl.vertexAttribPointer(colorLocation, 3, gl.UNSIGNED_BYTE, false, 0, 0)
@@ -334,78 +334,78 @@ function main () {
   const uMatrixLocation = gl.getUniformLocation(program, 'u_matrix')
 
   const cubeVao = createVertexArrayObject(
-      gl,
-      aPositionLocation,
-      colorLocation,
-      getCubeArray(),
-      getCubeColors()
+    gl,
+    aPositionLocation,
+    colorLocation,
+    getCubeArray(),
+    getCubeColors()
   )
   const cameraAxisVao = createVertexArrayObject(
-      gl,
-      aPositionLocation,
-      colorLocation,
-      getCameraAxisArray(),
-      getCameraAxisColor()
+    gl,
+    aPositionLocation,
+    colorLocation,
+    getCameraAxisArray(),
+    getCameraAxisColor()
   )
   const xAxisVao = createVertexArrayObject(
-      gl,
-      aPositionLocation,
-      colorLocation,
-      new Float32Array([
-        0.0, 0.0, 0.0,
-        10.0, 0.0, 0.0
-      ]),
-      new Uint8Array([
-        255, 0, 0,
-        255, 0, 0
-      ])
+    gl,
+    aPositionLocation,
+    colorLocation,
+    new Float32Array([
+      0.0, 0.0, 0.0,
+      10.0, 0.0, 0.0
+    ]),
+    new Uint8Array([
+      255, 0, 0,
+      255, 0, 0
+    ])
   )
   const zAxisVao = createVertexArrayObject(
-      gl,
-      aPositionLocation,
-      colorLocation,
-      new Float32Array([
-        0.0, 0.0, 0.0,
-        0.0, 0.0, 10.0
-      ]),
-      new Uint8Array([
-        0, 0, 255,
-        0, 0, 255
-      ])
+    gl,
+    aPositionLocation,
+    colorLocation,
+    new Float32Array([
+      0.0, 0.0, 0.0,
+      0.0, 0.0, 10.0
+    ]),
+    new Uint8Array([
+      0, 0, 255,
+      0, 0, 255
+    ])
   )
   const yAxisVao = createVertexArrayObject(
-      gl,
-      aPositionLocation,
-      colorLocation,
-      new Float32Array([
-        0.0, 0.0, 0.0,
-        0.0, 10.0, 0.0
-      ]),
-      new Uint8Array([
-        0, 255, 0,
-        0, 255, 0
-      ])
+    gl,
+    aPositionLocation,
+    colorLocation,
+    new Float32Array([
+      0.0, 0.0, 0.0,
+      0.0, 10.0, 0.0
+    ]),
+    new Uint8Array([
+      0, 255, 0,
+      0, 255, 0
+    ])
   )
   const horizontalAxisVao = createVertexArrayObject(
-      gl,
-      aPositionLocation,
-      colorLocation,
-      getHorizontalAxisArray(),
-      getHorizontalAxisColor()
+    gl,
+    aPositionLocation,
+    colorLocation,
+    getHorizontalAxisArray(),
+    getHorizontalAxisColor()
   )
 
   const cameraVao = createVertexArrayObject(
-      gl,
-      aPositionLocation,
-      colorLocation,
-      new Float32Array([
-        0.0, 0.0, 0.0,
-        0.0, 0.0, 10.0
-      ]),
-      new Uint8Array([
-        255, 0, 255,
-        255, 0, 255
-      ])
+    gl,
+    aPositionLocation,
+    colorLocation,
+    new Float32Array([
+      0.0, 0.0, 0.0,
+      0.0, 0.0, 10.0
+    ]),
+    new Uint8Array([
+      255, 0, 255,
+      255, 0, 255
+    ])
   )
 
   drawScene()
@@ -471,10 +471,10 @@ function main () {
 
     mat4.ortho(projectionMatrix, -12, 12, -12, 12, 0, 40)
     mat4.lookAt(
-        viewMatrix,
-        [10, 3, 10],
-        [0, 0, 0],
-        [0, 1, 0]
+      viewMatrix,
+      [10, 3, 10],
+      [0, 0, 0],
+      [0, 1, 0]
     )
     mat4.multiply(mvpMatrix, projectionMatrix, viewMatrix)
     gl.bindVertexArray(cubeVao)
@@ -531,9 +531,9 @@ function main () {
     gl.bindVertexArray(cubeVao)
     gl.uniformMatrix4fv(uMatrixLocation, false, mvpMatrix)
     gl.drawArrays(
-        gl.TRIANGLES,
-        0,
-        36
+      gl.TRIANGLES,
+      0,
+      36
     )
     gl.bindVertexArray(null)
   }
